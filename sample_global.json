@@ -1,0 +1,21 @@
+{
+	"id": "873d39c5-7f56-41ac-8cda-6ea287d6401c",
+	"values": [
+		{
+			"key": "fileurl",
+			"value": "https://postman-echo.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseurl",
+			"value": "https://gorest.co.in",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-08-19T14:55:16.560Z",
+	"_postman_exported_using": "Postman/11.7.0"
+}

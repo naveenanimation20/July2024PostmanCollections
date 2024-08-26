@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "987a3fc2-4959-4c5c-8ba8-257ef5dcd457",
+		"name": "DataDrivenAPITest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "2-CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check user data is correct\", function () {",
+							"    ",
+							"   const response =  pm.response.json();//actual data",
+							"",
+							"   pm.expect(response.name).to.eql(pm.iterationData.get(\"name\")); ",
+							"   pm.expect(response.gender).to.eql(pm.iterationData.get(\"gender\")); ",
+							"   pm.expect(response.status).to.eql(pm.iterationData.get(\"status\")); ",
+							"",
+							"   //assignment:",
+							"   //1. check the email",
+							"   const rawBody =  pm.request.body.raw; //JSON String",
+							"    //JSON to JS Object:",
+							"    const requestBody = JSON.parse(rawBody);",
+							"    const email = requestBody.email;",
+							"    console.log(email);",
+							"    pm.expect(response.email).to.eql(email);",
+							"",
+							"   //2. check test with json ",
+							"",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"{{name}}\",\n    \"gender\": \"{{gender}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"status\" : \"{{status}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

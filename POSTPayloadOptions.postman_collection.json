@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "371c59ef-13ed-475f-bd7b-7cc074acdbfe",
+		"name": "POSTPayloadOptions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Naveen",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "City",
+							"value": "Bangalore",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "BankStatement",
+							"contentType": "application/pdf",
+							"type": "file",
+							"src": "/Users/naveenautomationlabs/Desktop/hdfc.pdf",
+							"disabled": true
+						},
+						{
+							"key": "profilepic",
+							"contentType": "image/png",
+							"type": "file",
+							"src": "/Users/naveenautomationlabs/Downloads/CRUD_HTTP.png",
+							"disabled": true
+						},
+						{
+							"key": "testdata",
+							"contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+							"type": "file",
+							"src": "/Users/naveenautomationlabs/Documents/workspace1/Feb2024POMSeries/src/test/resources/testdata/OpenCartTestData.xlsx"
+						},
+						{
+							"key": "testdata",
+							"value": "{\"name\" : \"naveen\"}",
+							"contentType": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "testdata",
+							"value": "<dependency>\n\t\t\t<groupId>org.seleniumhq.selenium</groupId>\n\t\t\t<artifactId>selenium-java</artifactId>\n\t\t\t<version>4.11.0</version>\n\t\t</dependency>",
+							"contentType": "application/xml",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "httpbin.org/post",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

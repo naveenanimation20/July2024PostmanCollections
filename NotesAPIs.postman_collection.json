@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "5eec20bf-04a4-4a83-a278-0d14965bb961",
+		"name": "NotesAPIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "CreateNotes",
+			"item": [
+				{
+					"name": "POSTCALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"fresh selenium notes\",\n    \"content\" : \"this is my first selenium note\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.110.31.34:8080/api/notes",
+							"protocol": "http",
+							"host": [
+								"3",
+								"110",
+								"31",
+								"34"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GETNotes",
+			"item": [
+				{
+					"name": "GETALLNotes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"var template = `",
+									"    <table bgcolor=\"#FFFFFH\">",
+									"        <tr bgcolor=\"#ff7f39\">  ",
+									"            <th>ID</th>",
+									"            <th>Title</th>",
+									"            <th>Content</th>",
+									"            <th>CreatedAt</th>",
+									"            <th>UpdatedAt</th>",
+									"        </tr>",
+									"         {{#each response}}",
+									"            <tr>",
+									"                <td>{{id}}</td>",
+									"                <td>{{title}}</td>",
+									"                <td>{{content}}</td>",
+									"                <td>{{createdAt}}</td>",
+									"                <td>{{updatedAt}}</td>",
+									"",
+									"            </tr>",
+									"        {{/each}}",
+									"    </table>",
+									"`;",
+									"",
+									"pm.visualizer.set(template, {response : pm.response.json()});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "3.110.31.34:8080/api/notes",
+							"host": [
+								"3",
+								"110",
+								"31",
+								"34"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetANote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "3.110.31.34:8080/api/notes/{{notes_id}}",
+							"host": [
+								"3",
+								"110",
+								"31",
+								"34"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"{{notes_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UpdateNotes",
+			"item": [
+				{
+					"name": "UpdateANote",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"var template = `",
+									"    <table bgcolor=\"#FFFFFH\">",
+									"        <tr bgcolor=\"#ff7f39\">  ",
+									"            <th>ID</th>",
+									"            <th>Title</th>",
+									"            <th>Content</th>",
+									"            <th>CreatedAt</th>",
+									"            <th>UpdatedAt</th>",
+									"        </tr>",
+									"            <tr>",
+									"                <td>{{id}}</td>",
+									"                <td>{{title}}</td>",
+									"                <td>{{content}}</td>",
+									"                <td>{{createdAt}}</td>",
+									"                <td>{{updatedAt}}</td>",
+									"",
+									"            </tr>",
+									"    </table>",
+									"`;",
+									"",
+									"pm.visualizer.set(template, {response : pm.response.json()});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"naveen API automation notes\",\n    \"content\" : \"this is naveen automation selenium note\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.110.31.34:8080/api/notes/592",
+							"host": [
+								"3",
+								"110",
+								"31",
+								"34"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"592"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DeleteNotes",
+			"item": [
+				{
+					"name": "DELETEANote",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "3.110.31.34:8080/api/notes/519",
+							"host": [
+								"3",
+								"110",
+								"31",
+								"34"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"519"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

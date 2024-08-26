@@ -1,0 +1,39 @@
+After creating AWS instance, please follow these steps:
+
+1. Install Java 8:
+Java:
+sudo yum update -y 
+sudo yum remove java -y
+sudo yum install java-1.8.0-openjdk
+
+2. Install Docker:
+sudo yum install docker 
+sudo service docker start
+
+3. Install Docker-Compose:
+> sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+> sudo chmod +x /usr/local/bin/docker-compose
+
+
+> sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+> docker-compose version
+
+===============
+4. Remote login to AWS Linux machine:
+> Run this command:
+> in case of MAC machine: chmod 400 <file.pem>. chmod is required for Windows machine.
+> ssh -i <file.pem> ec2-user@public IP Address of AWS machine.
+
+Example:
+ssh -i selenoidjan.pem ec2-user@3.110.166.53
+===============
+5. Copy the content of browsers.json and docker-compose.yml files 
+> touch browsers.json
+> vi browsers.json
+> Press i for the Insert mode
+> Copy and paste browsers.json file content
+---Follow the same for docker-compose.yml file.
+
+===========. 

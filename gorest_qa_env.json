@@ -1,0 +1,39 @@
+{
+	"id": "206c4d8c-89c3-4e70-a283-539477d27411",
+	"name": "GoRest_QA",
+	"values": [
+		{
+			"key": "baseURL",
+			"value": "https://gorest.co.in",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "skipCollectionTest",
+			"value": "true",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "email_id",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "countryFilters",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-08-19T14:49:21.959Z",
+	"_postman_exported_using": "Postman/11.7.0"
+}

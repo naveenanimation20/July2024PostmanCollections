@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "8dcc363a-f5d9-4adb-a64e-c983885dac47",
+		"name": "FileUpload",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "fileupload",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"file url : \" + pm.globals.get('fileurl'))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/naveenautomationlabs/Documents/JulyAPI2024/Postman_Collections/sample-file.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{fileurl}}/post",
+					"host": [
+						"{{fileurl}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

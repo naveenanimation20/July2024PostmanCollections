@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "6b28da37-052e-4209-b6ff-14d4446c170e",
+		"name": "GET-Put Chaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "1-GetUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const getResponse = pm.response.json();",
+							"",
+							"const userIds =  getResponse.map(user => user.id);//array",
+							"console.log(userIds);",
+							"",
+							"pm.variables.set(\"user_ids\", userIds);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-UpdateUser",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const userIds = pm.variables.get(\"user_ids\");//Aray[]",
+							"",
+							"pm.variables.set(\"singleUserId\", userIds.shift());//101",
+							"",
+							"if(Array.isArray(userIds) && userIds.length >0){//2>0",
+							"    //run put call again:",
+							"    pm.execution.setNextRequest(\"2-UpdateUser\");",
+							"    //postman.setNextRequest(\"2-UpdateUser\")//old postman script",
+							"}",
+							"else{",
+							"    console.log(\"all users are updated\");",
+							"    pm.execution.setNextRequest(null);",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer e4b8e1f593dc4a731a153c5ec8cc9b8bbb583ae964ce650a741113091b4e2ac6",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Naveen automation labs\",\n\"status\": \"inactive\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/{{singleUserId}}",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{singleUserId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "4a3a7d85-304d-4b8a-8154-074f5e29ff51",
+		"name": "XML Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "732190"
+	},
+	"item": [
+		{
+			"name": "1-Send Request with XML body using a script",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//JS object:",
+							"let name  = 'naveen';",
+							"let options = {",
+							"    'method' : 'POST',",
+							"    'url' : 'http://httpbin.org/post',",
+							"    'headers': {",
+							"        'Content-Type' : 'application/xml'",
+							"    },",
+							"    body: `<?xml version=\"1.0\"?>",
+							"    <items>",
+							"        <item>",
+							"        <full_name>Clifton Jaskolski</full_name>",
+							"        <phone>+1 787-347-2484</phone>",
+							"        <email>clifton75@hotmail.com</email>",
+							"        <currency>$ 7,566,419</currency>",
+							"        <number>8318787</number>",
+							"        <price>{{price}}</price>",
+							"        </item>",
+							"",
+							"        <item>",
+							"        <full_name>Kellie Thiel</full_name>",
+							"        <phone>+1 517-566-8914</phone>",
+							"        <email>kellie.thiel@hotmail.com</email>",
+							"        <currency>$ 2,094,157</currency>",
+							"        <number>8483211</number>",
+							"        <price>{{price}}</price>",
+							"        </item>",
+							"        ",
+							"        <item>",
+							"        <full_name>Laurence Schimmel</full_name>",
+							"        <phone>+1 332-103-4923</phone>",
+							"        <email>laurence41@gmail.com</email>",
+							"        <currency>$ 7,285,029</currency>",
+							"        <number>3996718</number>",
+							"        <price>{{price}}</price>",
+							"        </item>",
+							"    </items>`",
+							"};",
+							"",
+							"const priceData = pm.iterationData.get('price');",
+							"console.log(priceData);",
+							"options.body = options.body.replace(/{{price}}/g, priceData);",
+							"",
+							"pm.sendRequest(options, function(error, response){",
+							"    if(error) {throw new Error(error)}",
+							"    console.log(response.status);",
+							"})",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "this is my xml",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-GetUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//xml2js -- api in postman",
+							"const xml2js = require('xml2js');",
+							"const xmlContent = pm.response.text();",
+							"",
+							"//parsing:",
+							"xml2js.parseString(xmlContent, function(error, result){",
+							"    if(error){",
+							"        console.log('error in parsing XML', error);",
+							"    }",
+							"    console.log(\"parsed XML: \", result);",
+							"",
+							"    pm.test('total users count is 10', function(){",
+							"        pm.expect(result.objects.object.length).to.eql(10);",
+							"    })",
+							"",
+							"    pm.test('fetch all userids and check the count', function(){",
+							"        const ids = result.objects.object.map(e => e.id[0]._);",
+							"        console.log(ids);",
+							"        pm.expect(ids.length).to.eql(10);",
+							"    })",
+							"",
+							"    pm.test('fetch all names and check the count', function(){",
+							"        const names = result.objects.object.map(e => e.name[0]);",
+							"        console.log(names);",
+							"        pm.expect(names.length).to.eql(10);",
+							"    })",
+							"",
+							"",
+							"})",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users.xml",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users.xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//xml2js -- api in postman",
+							"const xml2js = require('xml2js');",
+							"const xmlContent = pm.response.text();//text",
+							"console.log(xmlContent);",
+							"",
+							"xml2js.parseString(xmlContent, function(error, result){",
+							"    if(error){",
+							"        console.log(error);",
+							"    }",
+							"    console.log(result);",
+							"    pm.test('check user data', function(){",
+							"        pm.expect(result.hash.name[0]).to.eql('Chandraayan Prajapat');",
+							"        pm.expect(result.hash.status[0]).to.eql('inactive');",
+							"",
+							"    })",
+							"",
+							"})",
+							"//jasmine, mocha + chai assertion---> JS",
+							"//testNG + assertion --> JAVA",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/7301380.xml",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"7301380.xml"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
