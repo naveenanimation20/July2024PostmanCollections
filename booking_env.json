@@ -1,0 +1,33 @@
+{
+	"id": "14dc9115-d602-45ae-8435-98e74bef198d",
+	"name": "BookingAPI",
+	"values": [
+		{
+			"key": "username",
+			"value": "admin",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "password123",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseURL",
+			"value": "https://restful-booker.herokuapp.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "requestJson",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-08-26T15:00:32.713Z",
+	"_postman_exported_using": "Postman/11.9.2"
+}
